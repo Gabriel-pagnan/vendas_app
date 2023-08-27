@@ -3,12 +3,12 @@ import { AuthLoginType } from '../types/authLogin';
 import { connectionAPIPost } from '../functions/connection/connectionAPI';
 import { ERROR_INVALID_PASSWORD } from '../constants/errorsStatus';
 import { ReturnLoginType } from '../types/returnLogin';
-import { UserType } from '../types/userType';
+import { useUserReducer } from '../../Redux-store/reducer/user-reducer/useUserReducer';
 
 export const useRequest = () => {
+    const {setUser} = useUserReducer();
     const [loading, setLoaging] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
-    const [user, setUser] = useState<UserType>();
 
     const authRequest = async (body: AuthLoginType) => {
         setLoaging(true);
@@ -23,7 +23,6 @@ export const useRequest = () => {
     };
 
     return {
-        user,
         loading,
         authRequest,
         errorMessage,
