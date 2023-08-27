@@ -1,31 +1,11 @@
-import React, { useState } from 'react';
 import { ContainerLogin, ImgLogo } from './login.styles';
 import Input from '../../../shared/components/inputs/Input';
 import Button from '../../../shared/components/buttons/Button';
-import { KeyboardAvoidingView, NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
-import axios from 'axios';
+import { KeyboardAvoidingView } from 'react-native';
+import { useLogin } from '../hooks/useLogin';
 
 const Login = () => {
-  const [email, setEmail] = useState<string>('');
-  const [pass, setPass] = useState<string>('');
-  const [error, setError] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const handleLogin = async () => {
-    setLoading(true);
-    await axios.post('http://localhost:3001/auth', {email, pass})
-      .catch(() => {
-        setError('Usuário ou senha incorretos.');
-      });
-    setLoading(false);
-  };
-
-  const handleChangeMail = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
-    setEmail(e.nativeEvent.text);
-  };
-  const handleChangePass = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
-    setEmail(e.nativeEvent.text);
-  };
+  const {email, error, password, loading, handleLogin, handleChangeMail, handleChangePass} = useLogin();
 
   return (
     <KeyboardAvoidingView>
@@ -45,7 +25,7 @@ const Login = () => {
           onChange={handleChangeMail}/>
 
         <Input
-          value={pass}
+          value={password}
           leftIcon
           rightIcon
           colorIcon="#E67B0F"
