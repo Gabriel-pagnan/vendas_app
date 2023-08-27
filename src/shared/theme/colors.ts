@@ -9,6 +9,10 @@ export const netraulTheme = {
     white: '#ffffff',
 };
 
+export const orangeTheme = {
+    orange600: '#E67B0F',
+};
+
 export const purpleTheme = {
     purple: '#764582',
 };

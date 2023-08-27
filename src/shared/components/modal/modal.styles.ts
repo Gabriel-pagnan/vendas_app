@@ -7,7 +7,7 @@ export const ContainerModal = styled.View`
     position: absolute;
     bottom: 0;
     padding: 16px;
-    height: 200px;
+    height: 250px;
     width: 100%;
     background-color: ${(theme.colors.netraulTheme.white)};
     border-top-right-radius: 16px;
@@ -39,6 +39,7 @@ export const TitleModal = styled.Text`
 `;
 
 export const TextModal = styled.Text`
+    margin-top: 15px;
     font-size: 20px;
     font-family: ${(FontTypes.PoppinsRegular)};
     color: ${(theme.colors.grayTheme.gray200)};

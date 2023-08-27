@@ -4,9 +4,11 @@ import { connectionAPIPost } from '../functions/connection/connectionAPI';
 import { ERROR_INVALID_PASSWORD } from '../constants/errorsStatus';
 import { ReturnLoginType } from '../types/returnLogin';
 import { useUserReducer } from '../../Redux-store/reducer/user-reducer/useUserReducer';
+import { useGlobalReducer } from '../../Redux-store/reducer/global-reducer/useGlobalReducer';
 
 export const useRequest = () => {
-    const {setUser} = useUserReducer();
+    const { setUser } = useUserReducer();
+    const { setModal } = useGlobalReducer();
     const [loading, setLoaging] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -17,7 +19,13 @@ export const useRequest = () => {
                 setUser(result.user);
             })
             .catch(() => {
-                setErrorMessage(ERROR_INVALID_PASSWORD);
+                setModal({
+                    visible: true,
+                    title: 'Erro',
+                    titleButton: 'Tentar novamente',
+                    text: ERROR_INVALID_PASSWORD,
+                });
+                return undefined;
             });
         setLoaging(false);
     };

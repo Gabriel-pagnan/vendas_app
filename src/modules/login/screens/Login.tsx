@@ -5,7 +5,7 @@ import { KeyboardAvoidingView } from 'react-native';
 import { useLogin } from '../hooks/useLogin';
 
 const Login = () => {
-  const {email, error, password, loading, handleLogin, handleChangeMail, handleChangePass} = useLogin();
+  const {email,errorMessage, password, loading, handleLogin, handleChangeMail, handleChangePass} = useLogin();
 
   return (
     <KeyboardAvoidingView>
@@ -37,7 +37,7 @@ const Login = () => {
           autoCapitalize="none"
           autoCorrect={false}
           onChange={handleChangePass}
-          errorMessage={error}/>
+          errorMessage={errorMessage}/>
 
         <Button loading={loading} onPress={handleLogin} fontSize={20} title="entrar" color="#E67B0F" margin={25} />
       </ContainerLogin>
