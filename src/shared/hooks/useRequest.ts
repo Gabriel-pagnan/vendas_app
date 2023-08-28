@@ -7,6 +7,8 @@ import { useUserReducer } from '../../Redux-store/reducer/user-reducer/useUserRe
 import { useGlobalReducer } from '../../Redux-store/reducer/global-reducer/useGlobalReducer';
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 import { MenuURL } from '../enums/menu-url.enum';
+import { setAthorizationToken } from '../functions/connection/auth';
+import { URL_AUTH } from '../constants/urls';
 
 export const useRequest = () => {
     const {reset} = useNavigation<NavigationProp<ParamListBase>>();
@@ -17,8 +19,9 @@ export const useRequest = () => {
 
     const authRequest = async (body: AuthLoginType) => {
         setLoaging(true);
-        await connectionAPIPost<ReturnLoginType>('http://192.168.100.14:3001/auth', body)
+        await connectionAPIPost<ReturnLoginType>(URL_AUTH, body)
             .then((result) => {
+                setAthorizationToken(result.accessToken);
                 setUser(result.user);
                 reset({
                     index: 0,
