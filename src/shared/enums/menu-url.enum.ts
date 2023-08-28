@@ -1,4 +1,5 @@
 export enum MenuURL {
     LOGIN = 'Login',
-    HOME = 'Home'
+    HOME = 'Home',
+    SPLASH = 'Splash'
 }
