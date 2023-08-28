@@ -5,8 +5,11 @@ import { ERROR_INVALID_PASSWORD } from '../constants/errorsStatus';
 import { ReturnLoginType } from '../types/returnLogin';
 import { useUserReducer } from '../../Redux-store/reducer/user-reducer/useUserReducer';
 import { useGlobalReducer } from '../../Redux-store/reducer/global-reducer/useGlobalReducer';
+import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
+import { MenuURL } from '../enums/menu-url.enum';
 
 export const useRequest = () => {
+    const {reset} = useNavigation<NavigationProp<ParamListBase>>();
     const { setUser } = useUserReducer();
     const { setModal } = useGlobalReducer();
     const [loading, setLoaging] = useState<boolean>(false);
@@ -17,6 +20,10 @@ export const useRequest = () => {
         await connectionAPIPost<ReturnLoginType>('http://192.168.100.14:3001/auth', body)
             .then((result) => {
                 setUser(result.user);
+                reset({
+                    index: 0,
+                    routes: [{name: MenuURL.HOME}],
+                });
             })
             .catch(() => {
                 setModal({
