@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ContainerSplash, ImgSplash } from './splash.styles';
+import { ContainerSplash, ImgSplash, LoadingSplash } from './splash.styles';
 import { StatusBar } from 'react-native';
 import { useRequest } from '../../../shared/hooks/useRequest';
 import { URL_USER } from '../../../shared/constants/urls';
@@ -9,7 +9,6 @@ import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/
 import { MenuURL } from '../../../shared/enums/menu-url.enum';
 import { UserType } from '../../../shared/types/userType';
 import { getAthorizationToken } from '../../../shared/functions/connection/auth';
-
 
 const TIME_SLEEP = 5000;
 
@@ -57,11 +56,9 @@ const Splash = () => {
 
     return (
         <ContainerSplash>
-            <StatusBar
-                backgroundColor="transparent"
-                hidden
-            />
+            <StatusBar backgroundColor="transparent" hidden />
             <ImgSplash resizeMode="contain" source={require('../../../assets/images/splash.png')} />
+            <LoadingSplash size={'large'} color="#fff" style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }]}}/>
         </ContainerSplash>
     );
 };

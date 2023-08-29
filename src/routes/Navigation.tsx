@@ -10,7 +10,7 @@ const {Screen, Navigator} = createNativeStackNavigator();
 const Navigation = () => {
     return (
         <NavigationContainer>
-            <Navigator  screenOptions={{headerShown: false}}>
+            <Navigator screenOptions={{headerShown: false}}>
                 <Screen name={MenuURL.SPLASH} component={Splash} />
                 <Screen name={MenuURL.LOGIN} component={Login} />
                 <Screen name={MenuURL.HOME} component={Home} />
