@@ -1,11 +1,13 @@
-import { ContainerLogin, ImgLogo } from './login.styles';
+import { BtnRegister, ContainerLogin, ContainerRegister, ImgLogo, TitleBtn, TitleRegister } from './login.styles';
 import Input from '../../../shared/components/inputs/Input';
 import Button from '../../../shared/components/buttons/Button';
 import { KeyboardAvoidingView } from 'react-native';
 import { useLogin } from '../hooks/useLogin';
+import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 
 const Login = () => {
-  const {email,errorMessage, password, loading, handleLogin, handleChangeMail, handleChangePass} = useLogin();
+  const { email, errorMessage, password, loading, handleLogin, handleChangeMail, handleChangePass } = useLogin();
+  const {navigate} = useNavigation<NavigationProp<ParamListBase>>();
 
   return (
     <KeyboardAvoidingView>
@@ -22,7 +24,7 @@ const Login = () => {
           margin={10}
           autoCapitalize="none"
           autoCorrect={false}
-          onChange={handleChangeMail}/>
+          onChange={handleChangeMail} />
 
         <Input
           value={password}
@@ -37,9 +39,16 @@ const Login = () => {
           autoCapitalize="none"
           autoCorrect={false}
           onChange={handleChangePass}
-          errorMessage={errorMessage}/>
+          errorMessage={errorMessage} />
 
         <Button loading={loading} onPress={handleLogin} fontSize={20} title="entrar" color="#E67B0F" margin={25} />
+
+        <ContainerRegister>
+          <TitleRegister>Não possui conta?</TitleRegister>
+          <BtnRegister onPress={() => navigate('Register')}>
+            <TitleBtn>Cadastrar</TitleBtn>
+          </BtnRegister>
+        </ContainerRegister>
       </ContainerLogin>
     </KeyboardAvoidingView>
   );

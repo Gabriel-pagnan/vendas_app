@@ -24,7 +24,7 @@ const Button = ({onPress, loading, fontSize, color, title, margin, ...props }: I
     );
 
     return (
-        <ContainerButton onPress={handlePress} style={{ backgroundColor: color, margin }} {...props}>
+        <ContainerButton onPress={handlePress} style={{ backgroundColor: color, marginTop: margin }} {...props}>
             {renderLoading()}
         </ContainerButton>
     );

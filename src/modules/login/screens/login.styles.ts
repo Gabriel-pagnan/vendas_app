@@ -15,3 +15,30 @@ export const ImgLogo = styled.Image`
     height: 150px;
     margin: 20px;
 `;
+
+
+export const ContainerRegister = styled.View`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
+    z-index: -1;
+`;
+
+export const BtnRegister = styled.Pressable`
+    margin-left: 10px;
+`;
+export const TitleRegister = styled.Text`
+    color: #313333;
+    font-size: 15px;
+`;
+
+export const TitleBtn = styled.Text`
+    color: ${(theme.colors.orangeTheme.orange600)};
+    font-size: 16px;
+    text-decoration: underline;
+`;
