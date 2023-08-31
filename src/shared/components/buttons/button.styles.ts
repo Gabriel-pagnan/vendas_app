@@ -22,3 +22,13 @@ export const TitleButton = styled.Text`
 export const ActivityIndicator = styled.ActivityIndicator`
     margin-right: 8px;
 `;
+
+export const ButtonDisable = styled.TouchableOpacity`
+    width: 100%;
+    padding: 14px;
+    border-radius: 50px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: ${(theme.colors.grayTheme.gray)};
+`;

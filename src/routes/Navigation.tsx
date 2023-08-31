@@ -11,7 +11,7 @@ const {Screen, Navigator} = createNativeStackNavigator();
 const Navigation = () => {
     return (
         <NavigationContainer>
-            <Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
+            <Navigator initialRouteName="Register" screenOptions={{headerShown: false}}>
                 <Screen name={MenuURL.SPLASH} component={Splash} />
                 <Screen name={MenuURL.LOGIN} component={Login} />
                 <Screen name={MenuURL.REGISTER} component={Register} />

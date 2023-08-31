@@ -1,5 +1,5 @@
 import { TouchableOpacityProps } from 'react-native';
-import { ActivityIndicator, ContainerButton, TitleButton } from './button.styles';
+import { ActivityIndicator, ButtonDisable, ContainerButton, TitleButton } from './button.styles';
 
 interface IButtonProps extends TouchableOpacityProps {
     title: string,
@@ -8,20 +8,29 @@ interface IButtonProps extends TouchableOpacityProps {
     fontSize?: number,
     width?: number,
     loading?: boolean,
-    onPress?: () => void
+    onPress?: () => void,
+    disable?: boolean
 }
 
-const Button = ({onPress, loading, fontSize, color, title, margin, ...props }: IButtonProps) => {
+const Button = ({ disable, onPress, loading, fontSize, color, title, margin, ...props }: IButtonProps) => {
     const handlePress = () => {
-        if (!loading && onPress) {onPress();}
+        if (!loading && onPress) { onPress(); }
     };
 
     const renderLoading = () => (
         <>
-            {loading && <ActivityIndicator color="#fff" /> }
+            {loading && <ActivityIndicator color="#fff" />}
             <TitleButton style={{ fontSize }}>{title}</TitleButton>
         </>
     );
+
+    if (disable) {
+        return (
+            <ButtonDisable disabled={true} style={{ marginTop: margin }} {...props}>
+                <TitleButton style={{ fontSize }}>{title}</TitleButton>
+            </ButtonDisable>
+        );
+    }
 
     return (
         <ContainerButton onPress={handlePress} style={{ backgroundColor: color, marginTop: margin }} {...props}>
