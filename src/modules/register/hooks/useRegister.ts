@@ -8,6 +8,7 @@ import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/
 import { validateCPF } from '../../../shared/functions/cpf';
 import { validatePhone } from '../../../shared/functions/phone';
 import { validateEmail } from '../../../shared/functions/email';
+import { removeSpecialCharacters } from '../../../shared/functions/characters';
 
 export const DEFAULT_CREATE_USER = {
     confirmPassword: '',
@@ -48,7 +49,11 @@ export const useRegister = () => {
         const result = await request({
             url: URL_USER,
             method: MethodsEnum.POST,
-            body: createUser,
+            body: {
+                ...createUser,
+                phone: removeSpecialCharacters(createUser.phone),
+                cpf: removeSpecialCharacters(createUser.cpf),
+            },
             message: 'Seu cadastro foi concluido.',
         });
         if (result) {

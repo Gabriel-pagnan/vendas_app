@@ -7,7 +7,6 @@ import { insertMaskInCpf } from '../../functions/cpf';
 import { insertMaskInPhone } from '../../functions/phone';
 
 
-
 interface InputProps extends TextInputProps {
     placeholder?: string,
     margin?: number,
@@ -21,7 +20,7 @@ interface InputProps extends TextInputProps {
     type?: 'cel-phone' | 'cpf'
 }
 
-const Input = ({type, onChange, errorMessage, size, colorIcon, icon, leftIcon, rightIcon, title, placeholder, margin, ...props }: InputProps) => {
+const Input = ({ type, onChange, errorMessage, size, colorIcon, icon, leftIcon, rightIcon, title, placeholder, margin, ...props }: InputProps) => {
     const [secury, setSecury] = useState(true);
 
     const handleOnChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
@@ -40,7 +39,7 @@ const Input = ({type, onChange, errorMessage, size, colorIcon, icon, leftIcon, r
         if (onChange) {
             onChange({
                 ...e,
-                nativeEvent: {...e.nativeEvent, text},
+                nativeEvent: { ...e.nativeEvent, text },
             });
         }
     };
@@ -52,7 +51,13 @@ const Input = ({type, onChange, errorMessage, size, colorIcon, icon, leftIcon, r
                 {leftIcon && (
                     <Ionicons name={icon || ''} size={size} color={colorIcon} />
                 )}
-                <ContainerInput onChange={handleOnChange} placeholder={placeholder} style={{ margin }} {...props} />
+                <ContainerInput
+                    {...props}
+                    onChange={handleOnChange}
+                    placeholder={placeholder}
+                    style={{ margin }}
+                    secureTextEntry={secury}
+                />
 
                 {rightIcon && (
                     <TouchableOpacity onPress={() => setSecury(!secury)} >
