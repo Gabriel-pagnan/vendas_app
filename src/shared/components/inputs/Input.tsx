@@ -1,8 +1,12 @@
-import { TextInputProps, TouchableOpacity } from 'react-native';
+import { NativeSyntheticEvent, TextInputChangeEventData, TextInputProps, TouchableOpacity } from 'react-native';
 import { Container, ContainerInput, TextError, TitleInput } from './input.styles';
 import { DisplayCollum } from '../../styles/globalView.styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useState } from 'react';
+import { insertMaskInCpf } from '../../functions/cpf';
+import { insertMaskInPhone } from '../../functions/phone';
+
+
 
 interface InputProps extends TextInputProps {
     placeholder?: string,
@@ -13,11 +17,33 @@ interface InputProps extends TextInputProps {
     size?: number,
     colorIcon?: string,
     icon?: string,
-    errorMessage?: string
+    errorMessage?: string,
+    type?: 'cel-phone' | 'cpf'
 }
 
-const Input = ({ errorMessage, size, colorIcon, icon, leftIcon, rightIcon, title, placeholder, margin, ...props }: InputProps) => {
+const Input = ({type, onChange, errorMessage, size, colorIcon, icon, leftIcon, rightIcon, title, placeholder, margin, ...props }: InputProps) => {
     const [secury, setSecury] = useState(true);
+
+    const handleOnChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
+        let text = e.nativeEvent.text;
+        switch (type) {
+            case 'cpf':
+                text = insertMaskInCpf(text);
+                break;
+            case 'cel-phone':
+                text = insertMaskInPhone(text);
+                break;
+            default:
+                text = insertMaskInCpf(text);
+                break;
+        }
+        if (onChange) {
+            onChange({
+                ...e,
+                nativeEvent: {...e.nativeEvent, text},
+            });
+        }
+    };
 
     return (
         <DisplayCollum>
@@ -26,7 +52,7 @@ const Input = ({ errorMessage, size, colorIcon, icon, leftIcon, rightIcon, title
                 {leftIcon && (
                     <Ionicons name={icon || ''} size={size} color={colorIcon} />
                 )}
-                <ContainerInput placeholder={placeholder} style={{ margin }} {...props} />
+                <ContainerInput onChange={handleOnChange} placeholder={placeholder} style={{ margin }} {...props} />
 
                 {rightIcon && (
                     <TouchableOpacity onPress={() => setSecury(!secury)} >

@@ -50,6 +50,7 @@ const AppIntoSlider = () => {
                     render: (
                         <>
                             <Input
+                                type="cel-phone"
                                 value={createUser.phone}
                                 onChange={(e) => handleChange(e, 'phone')}
                                 placeholder="Seu telefone"
@@ -58,6 +59,7 @@ const AppIntoSlider = () => {
                                 size={26}
                                 colorIcon="#E67B0F" />
                             <Input
+                                type="cpf"
                                 value={createUser.cpf}
                                 onChange={(e) => handleChange(e, 'cpf')}
                                 placeholder="Seu CPF"
