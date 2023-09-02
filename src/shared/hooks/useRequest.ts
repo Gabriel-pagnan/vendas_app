@@ -62,7 +62,7 @@ export const useRequest = () => {
                 setUser(result.user);
                 reset({
                     index: 0,
-                    routes: [{name: MenuURL.HOME}],
+                    routes: [{name: MenuURL.TAB_ROUTES}],
                 });
             })
             .catch(() => {

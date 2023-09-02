@@ -40,7 +40,7 @@ const Splash = () => {
             if (returnUser) {
                 reset({
                     index: 0,
-                    routes: [{ name: MenuURL.HOME }],
+                    routes: [{ name: MenuURL.TAB_ROUTES }],
                 });
             } else {
                 reset({

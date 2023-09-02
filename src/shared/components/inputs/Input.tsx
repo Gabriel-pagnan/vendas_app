@@ -21,7 +21,7 @@ interface InputProps extends TextInputProps {
 }
 
 const Input = ({ type, onChange, errorMessage, size, colorIcon, icon, leftIcon, rightIcon, title, placeholder, margin, ...props }: InputProps) => {
-    const [secury, setSecury] = useState(true);
+    const [secury, setSecury] = useState(false);
 
     const handleOnChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
         let text = e.nativeEvent.text;

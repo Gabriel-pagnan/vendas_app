@@ -24,7 +24,7 @@ export const ContainerLogin = styled.View`
     position: absolute;
     bottom: 0;
     margin-bottom: 20px;
-    z-index: -10;
+    z-index: 1;
 `;
 
 export const BtnLogin = styled.Pressable`
