@@ -10,7 +10,7 @@ import { MenuURL } from '../../../shared/enums/menu-url.enum';
 import { UserType } from '../../../shared/types/userType';
 import { getAthorizationToken } from '../../../shared/functions/connection/auth';
 
-const TIME_SLEEP = 5000;
+const TIME_SLEEP = 4000;
 
 const Splash = () => {
     const { request } = useRequest();

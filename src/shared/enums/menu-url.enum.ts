@@ -3,5 +3,8 @@ export enum MenuURL {
     HOME = 'Home',
     SPLASH = 'Splash',
     REGISTER = 'Register',
-    TAB_ROUTES = 'TabRoutes'
+    TAB_ROUTES = 'TabRoutes',
+    PROFILE = 'Profile',
+    ORDER = 'Order',
+    PRODUCT = 'Product'
 }

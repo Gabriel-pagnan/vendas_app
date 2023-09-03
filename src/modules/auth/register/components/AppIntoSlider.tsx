@@ -1,10 +1,10 @@
-import Input from '../../../shared/components/inputs/Input';
-import Button from '../../../shared/components/buttons/Button';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useRegister } from '../hooks/useRegister';
 import { ImageSlider } from '../screens/register.styles';
+import Input from '../../../../shared/components/inputs/Input';
+import Button from '../../../../shared/components/buttons/Button';
 
 const AppIntoSlider = () => {
     const { handleChange, createUser, loading, handleRegister, disable } = useRegister();
@@ -22,7 +22,7 @@ const AppIntoSlider = () => {
             data={[
                 {
                     key: '1',
-                    image: <ImageSlider resizeMode="center" source={require('../../../assets/images/page1.png')} />,
+                    image: <ImageSlider resizeMode="center" source={require('../../../../assets/images/page1.png')} />,
                     render: (
                         <>
                             <Input
@@ -46,7 +46,7 @@ const AppIntoSlider = () => {
                 },
                 {
                     key: '2',
-                    image: <ImageSlider resizeMode="center" source={require('../../../assets/images/page2.png')} />,
+                    image: <ImageSlider resizeMode="center" source={require('../../../../assets/images/page2.png')} />,
                     render: (
                         <>
                             <Input
@@ -72,7 +72,7 @@ const AppIntoSlider = () => {
                 },
                 {
                     key: '3',
-                    image: <ImageSlider resizeMode="center" source={require('../../../assets/images/page3.png')} />,
+                    image: <ImageSlider resizeMode="center" source={require('../../../../assets/images/page3.png')} />,
                     render: (
                         <>
                             <Input

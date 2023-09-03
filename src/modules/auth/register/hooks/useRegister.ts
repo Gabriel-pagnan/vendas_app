@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { CreateUserType } from '../../../shared/types/createUserType';
+import { URL_USER } from '../../../../shared/constants/urls';
+import { useRequest } from '../../../../shared/hooks/useRequest';
+import { validateCPF } from '../../../../shared/functions/cpf';
+import { validateEmail } from '../../../../shared/functions/email';
+import { validatePhone } from '../../../../shared/functions/phone';
+import { MethodsEnum } from '../../../../shared/enums/methods.enum';
+import { CreateUserType } from '../../../../shared/types/createUserType';
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
-import { useRequest } from '../../../shared/hooks/useRequest';
-import { URL_USER } from '../../../shared/constants/urls';
-import { MethodsEnum } from '../../../shared/enums/methods.enum';
+import { removeSpecialCharacters } from '../../../../shared/functions/characters';
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
-import { validateCPF } from '../../../shared/functions/cpf';
-import { validatePhone } from '../../../shared/functions/phone';
-import { validateEmail } from '../../../shared/functions/email';
-import { removeSpecialCharacters } from '../../../shared/functions/characters';
 
 export const DEFAULT_CREATE_USER = {
     confirmPassword: '',

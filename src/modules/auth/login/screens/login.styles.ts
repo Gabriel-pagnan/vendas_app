@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { theme } from '../../../shared/theme/theme';
+import { theme } from '../../../../shared/theme/theme';
 
 export const ContainerLogin = styled.View`
     height: 100%;

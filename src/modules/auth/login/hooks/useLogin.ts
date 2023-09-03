@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { useRequest } from '../../../../shared/hooks/useRequest';
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
-import { useRequest } from '../../../shared/hooks/useRequest';
 
 export const useLogin = () => {
     const [email, setEmail] = useState<string>('');

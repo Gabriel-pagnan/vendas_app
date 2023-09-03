@@ -1,9 +1,9 @@
 import { BtnRegister, ContainerLogin, ContainerRegister, ImgLogo, TitleBtn, TitleRegister } from './login.styles';
-import Input from '../../../shared/components/inputs/Input';
-import Button from '../../../shared/components/buttons/Button';
 import { KeyboardAvoidingView, Platform } from 'react-native';
 import { useLogin } from '../hooks/useLogin';
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
+import Button from '../../../../shared/components/buttons/Button';
+import Input from '../../../../shared/components/inputs/Input';
 
 const Login = () => {
   const { email, errorMessage, password, loading, handleLogin, handleChangeMail, handleChangePass } = useLogin();
@@ -12,7 +12,7 @@ const Login = () => {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ContainerLogin>
-        <ImgLogo resizeMode="contain" source={require('../../../assets/images/login.png')} />
+        <ImgLogo resizeMode="contain" source={require('../../../../assets/images/login.png')} />
 
         <Input
           value={email}
