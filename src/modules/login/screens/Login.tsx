@@ -1,7 +1,7 @@
 import { BtnRegister, ContainerLogin, ContainerRegister, ImgLogo, TitleBtn, TitleRegister } from './login.styles';
 import Input from '../../../shared/components/inputs/Input';
 import Button from '../../../shared/components/buttons/Button';
-import { KeyboardAvoidingView } from 'react-native';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 import { useLogin } from '../hooks/useLogin';
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 
@@ -10,7 +10,7 @@ const Login = () => {
   const {navigate} = useNavigation<NavigationProp<ParamListBase>>();
 
   return (
-    <KeyboardAvoidingView>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ContainerLogin>
         <ImgLogo resizeMode="contain" source={require('../../../assets/images/login.png')} />
 
