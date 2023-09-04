@@ -6,5 +6,6 @@ export enum MenuURL {
     TAB_ROUTES = 'TabRoutes',
     PROFILE = 'Profile',
     ORDER = 'Order',
-    PRODUCT = 'Product'
+    PRODUCT = 'Product',
+    CART = 'Cart'
 }

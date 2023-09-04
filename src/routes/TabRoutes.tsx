@@ -5,6 +5,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { theme } from '../shared/theme/theme';
 import Profile from '../modules/profile';
 import Order from '../modules/order';
+import { MenuURL } from '../shared/enums/menu-url.enum';
+import Cart from '../modules/cart';
 
 export const TabRoutes = () => {
     const { Navigator, Screen } = createBottomTabNavigator();
@@ -29,7 +31,7 @@ export const TabRoutes = () => {
                 },
             }}>
 
-            <Screen name="Home" component={Home} options={{
+            <Screen name={MenuURL.HOME} component={Home} options={{
                 tabBarShowLabel: false,
                 tabBarIcon: ({ focused }) => (
                     <View>
@@ -41,19 +43,19 @@ export const TabRoutes = () => {
                     </View>
                 ),
             }} />
-            <Screen name="Configuração" component={Home} options={{
+            <Screen name={MenuURL.CART} component={Cart} options={{
                 tabBarShowLabel: false,
                 tabBarIcon: ({ focused }) => (
                     <View>
                         {focused ? (
-                            <Icon name="settings" color={theme.colors.orangeTheme.orange600} size={30} />
+                            <Icon name="receipt" color={theme.colors.orangeTheme.orange600} size={30} />
                             ) : (
-                                <Icon name="settings-outline" color={theme.colors.grayTheme.gray100} size={30} />
+                                <Icon name="receipt-outline" color={theme.colors.grayTheme.gray100} size={30} />
                                 )}
                     </View>
                 ),
             }} />
-            <Screen name="Pedidos" component={Order} options={{
+            <Screen name={MenuURL.ORDER} component={Order} options={{
                 tabBarShowLabel: false,
                 tabBarIcon: ({ focused }) => (
                     <View>
@@ -65,7 +67,7 @@ export const TabRoutes = () => {
                     </View>
                 ),
             }} />
-            <Screen name="Perfil" component={Profile} options={{
+            <Screen name={MenuURL.PROFILE} component={Profile} options={{
                 tabBarShowLabel: false,
                 tabBarIcon: ({ focused }) => (
                     <View>
