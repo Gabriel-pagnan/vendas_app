@@ -35,6 +35,7 @@ const Home = () => {
                 </IconCart>
                 <FlatListContainer>
                     <FlatList
+                        showsHorizontalScrollIndicator={false}
                         data={products}
                         horizontal
                         renderItem={({ item }) =>

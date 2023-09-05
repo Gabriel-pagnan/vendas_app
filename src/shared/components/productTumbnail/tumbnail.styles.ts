@@ -4,7 +4,7 @@ import { FontTypes } from '../../types/fontType';
 interface IContainerProps {
     margin?: string
 }
-export const ContainerTumbnail = styled.TouchableOpacity<IContainerProps>`
+export const ContainerTumbnail = styled.Pressable<IContainerProps>`
     height: 160px;
     border-radius: 12px;
     flex-direction: row;
@@ -18,7 +18,6 @@ export const ContainerTumbnail = styled.TouchableOpacity<IContainerProps>`
 export const ImageProduct = styled.Image`
     width: 150px;
     height: 150px;
-    mix-blend-mode: multiply;
 `;
 
 export const NameProduct = styled.Text`
