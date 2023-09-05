@@ -18,6 +18,7 @@ export const purpleTheme = {
 };
 
 export const redTheme = {
+    orangeRed: 'orangered',
     red100: '#E55456',
     red200: '#dd4b25',
 };

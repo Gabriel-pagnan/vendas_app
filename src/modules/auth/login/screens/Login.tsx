@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, Platform } from 'react-native';
 import { useLogin } from '../hooks/useLogin';
 import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 import Button from '../../../../shared/components/buttons/Button';
-import Input from '../../../../shared/components/inputs/Input';
+import Input from '../../../../shared/components/inputs/default/Input';
 
 const Login = () => {
   const { email, errorMessage, password, loading, handleLogin, handleChangeMail, handleChangePass } = useLogin();

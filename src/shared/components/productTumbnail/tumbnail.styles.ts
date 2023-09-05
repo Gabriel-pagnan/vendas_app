@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { FontTypes } from '../../types/fontType';
 
 interface IContainerProps {
     margin?: string
@@ -15,7 +16,32 @@ export const ContainerTumbnail = styled.TouchableOpacity<IContainerProps>`
 `;
 
 export const ImageProduct = styled.Image`
-    width: 130px;
-    height: 130px;
-    background-color: green;
+    width: 150px;
+    height: 150px;
+    mix-blend-mode: multiply;
+`;
+
+export const NameProduct = styled.Text`
+    font-size: 22px;
+    font-family: ${(FontTypes.PoppinsSemiBold)};
+`;
+
+export const PriceProduct = styled.Text`
+    font-size: 18px;
+    font-family: ${(FontTypes.PoppinsItalic)};
+`;
+
+export const InfoProduct = styled.View`
+    width: 100%; 
+    height: 100px;
+    align-items: flex-start;
+    justify-content: flex-start; 
+`;
+
+export const AddCart = styled.Pressable`
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 20px;
+    align-items: center;
 `;

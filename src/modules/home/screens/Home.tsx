@@ -5,18 +5,16 @@ import { useRequest } from '../../../shared/hooks/useRequest';
 import { URL_PRODUCT } from '../../../shared/constants/urls';
 import { MethodsEnum } from '../../../shared/enums/methods.enum';
 import { ProductType } from '../../../shared/types/productType';
-import { MenuURL } from '../../../shared/enums/menu-url.enum';
-import { ProductNavigationProp } from '../../product/screens/Product';
-import { useNavigation } from '@react-navigation/native';
 import ProductTumbnail from '../../../shared/components/productTumbnail/ProductTumbnail';
 import { theme } from '../../../shared/theme/theme';
-import { FlatListContainer, Tumbnail } from './home.styles';
+import { FlatListContainer, IconCart, Tumbnail } from './home.styles';
+import Search from '../../../shared/components/inputs/search/Search';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 const Home = () => {
     const { request } = useRequest();
     const { products, setProducts } = useProductReducer();
-    const { navigate } = useNavigation<ProductNavigationProp>();
 
     useEffect(() => {
         request<ProductType[]>({
@@ -26,17 +24,15 @@ const Home = () => {
         });
     }, []);
 
-    const handleProduct = (product: ProductType) => {
-        navigate(MenuURL.PRODUCT, {
-            product,
-        });
-    };
-
     return (
         <View>
-            <StatusBar backgroundColor={theme.colors.orangeTheme.orange600} />
+            <StatusBar backgroundColor={theme.colors.redTheme.orangeRed} />
 
             <Tumbnail>
+                <Search placeholder="Buscar produto..." rightIcon margin="25px 70px 0 0" />
+                <IconCart>
+                    <Icon name="cart" size={34} color={'#ffff'} />
+                </IconCart>
                 <FlatListContainer>
                     <FlatList
                         data={products}
@@ -46,7 +42,6 @@ const Home = () => {
                                 key={item.id}
                                 product={item}
                                 margin={'60px 0 0 20px'}
-                                onPress={() => handleProduct}
                             />
                         } />
                 </FlatListContainer>

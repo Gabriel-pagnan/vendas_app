@@ -1,10 +1,10 @@
 import { NativeSyntheticEvent, TextInputChangeEventData, TextInputProps, TouchableOpacity } from 'react-native';
 import { Container, ContainerInput, TextError, TitleInput } from './input.styles';
-import { DisplayCollum } from '../../styles/globalView.styles';
+import { DisplayCollum } from '../../../styles/globalView.styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useState } from 'react';
-import { insertMaskInCpf } from '../../functions/cpf';
-import { insertMaskInPhone } from '../../functions/phone';
+import { insertMaskInCpf } from '../../../functions/cpf';
+import { insertMaskInPhone } from '../../../functions/phone';
 
 
 interface InputProps extends TextInputProps {

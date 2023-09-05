@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useRegister } from '../hooks/useRegister';
 import { ImageSlider } from '../screens/register.styles';
-import Input from '../../../../shared/components/inputs/Input';
+import Input from '../../../../shared/components/inputs/default/Input';
 import Button from '../../../../shared/components/buttons/Button';
 
 const AppIntoSlider = () => {
