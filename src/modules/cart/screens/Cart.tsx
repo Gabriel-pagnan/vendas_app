@@ -18,11 +18,12 @@ const Cart = () => {
             saveGlobal: setCart,
         });
     }, []);
+
     return (
         <ContainerCart>
             {cart?.cartProduct ?
                 <Text>
-                    teste
+                    {cart?.id}
                 </Text> :
 
                 <CartEmpty resizeMode="contain" source={require('../../../assets/images/cart-empty.png')} />

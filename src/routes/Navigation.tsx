@@ -5,7 +5,8 @@ import Splash from '../modules/splash/screens/Splash';
 import { TabRoutes } from './TabRoutes';
 import Register from '../modules/auth/register';
 import Login from '../modules/auth/login';
-import Product from '../modules/product';
+import Product from '../modules/product/screens/Product';
+import Search from '../modules/product/screens/Search';
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ const Navigation = () => {
                 <Screen name={MenuURL.LOGIN} component={Login} />
                 <Screen name={MenuURL.REGISTER} component={Register} />
                 <Screen name={MenuURL.TAB_ROUTES} component={TabRoutes} />
+                <Screen name={MenuURL.SEARCH_PRODUCT} component={Search} />
                 <Screen name={MenuURL.PRODUCT} options={{
                     title: '',
                     headerShown: true,

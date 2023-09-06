@@ -5,7 +5,7 @@ export interface CartProductType {
     cartId: number;
     productId: number;
     amount: number;
-    product: ProductType;
+    product: ProductType[];
 }
 
 export interface CartType {

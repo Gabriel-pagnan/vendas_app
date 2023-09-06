@@ -6,22 +6,22 @@ import { DisplayCollum } from '../../../styles/globalView.styles';
 interface SearchProps extends TextInputProps {
     placeholder?: string,
     margin?: string,
-    rightIcon?: boolean
+    rightIcon?: boolean,
+    onPress: () => void
 }
 
-const Search = ({placeholder, margin, rightIcon, ...props}: SearchProps) => {
+const Search = ({onPress, placeholder, margin, rightIcon, ...props}: SearchProps) => {
     return (
         <DisplayCollum>
             <Container margin={margin}>
                 <ContainerSearch
                     {...props}
-                    onChange={() => {}}
                     placeholder={placeholder}
                 />
 
                 {rightIcon && (
-                    <TouchableOpacity onPress={() => {}} >
-                        <Ionicons name="search-outline" size={30} color={'#313333'} />
+                    <TouchableOpacity>
+                        <Ionicons onPress={onPress} name="search-outline" size={30} color={'#313333'} />
                     </TouchableOpacity>
                 )}
             </Container>

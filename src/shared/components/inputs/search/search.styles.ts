@@ -6,14 +6,13 @@ interface ISearchProps {
 }
 
 export const Container = styled.View<ISearchProps>`
-    width: 300px;
+    width: 330px;
     height: 45px;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     padding: 0 12px;
     border-radius: 50px;
-    margin: ${(props) => props.margin || '20px 0 0 0'};
     background-color: ${(theme.colors.netraulTheme.white)};
     elevation: 1;
     shadow-color: #000;

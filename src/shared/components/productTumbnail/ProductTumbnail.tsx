@@ -9,6 +9,7 @@ import { MenuURL } from '../../enums/menu-url.enum';
 import { useRequest } from '../../hooks/useRequest';
 import { URL_CART } from '../../constants/urls';
 import { MethodsEnum } from '../../enums/methods.enum';
+import { CartRequest } from '../../types/cartRequest';
 
 interface IProductTumbnail extends TouchableOpacityProps {
     product: ProductType,
@@ -20,13 +21,14 @@ const ProductTumbnail = ({ product, margin, ...props }: IProductTumbnail) => {
     const { navigate } = useNavigation<ProductNavigationProp>();
 
     const insertProduct = () => {
-        request({
+        request<unknown, CartRequest>({
             url: URL_CART,
             method: MethodsEnum.POST,
             body: {
                 productId: product.id,
                 amount: 1,
             },
+            message: 'Adicionado ao carrinho!',
         });
     };
 

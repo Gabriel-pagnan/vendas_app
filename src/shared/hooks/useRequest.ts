@@ -27,7 +27,7 @@ export const useRequest = () => {
 
     const request = async <T, B = unknown>({url, method, saveGlobal, body, message}: IRequestProps<T, B>): Promise<T | undefined> => {
         setLoaging(true);
-        const returnObject: T | undefined = await ConnectionAPI.connect<T>(url, method, body)
+        const returnObject: T | undefined = await ConnectionAPI.connect<T, B>(url, method, body)
             .then((result) => {
                 if (saveGlobal) {saveGlobal(result);}
                 if (message) {
