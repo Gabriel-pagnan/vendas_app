@@ -10,15 +10,16 @@ import { theme } from '../../../shared/theme/theme';
 import { ContainerSearch, FlatListContainer, IconCart, Tumbnail } from './home.styles';
 import Search from '../../../shared/components/inputs/search/Search';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { MenuURL } from '../../../shared/enums/menu-url.enum';
+import { SearchNavigationProp } from '../../product/screens/Search';
 
 
 const Home = () => {
     const { request } = useRequest();
     const [search, setSearch] = useState<string>('');
     const { products, setProducts } = useProductReducer();
-    const { navigate } = useNavigation<NavigationProp<ParamListBase>>();
+    const { navigate } = useNavigation<SearchNavigationProp>();
 
     useEffect(() => {
         request<ProductType[]>({
@@ -26,10 +27,12 @@ const Home = () => {
             method: MethodsEnum.GET,
             saveGlobal: setProducts,
         });
-    }, []);
+    }, [search]);
 
     const handleSearch = () => {
-        navigate(MenuURL.SEARCH_PRODUCT);
+        navigate(MenuURL.SEARCH_PRODUCT, {
+            search,
+        });
     };
 
     const handleChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
