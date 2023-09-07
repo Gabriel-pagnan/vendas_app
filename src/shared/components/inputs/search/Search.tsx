@@ -7,10 +7,10 @@ interface SearchProps extends TextInputProps {
     placeholder?: string,
     margin?: string,
     rightIcon?: boolean,
-    onPress: () => void
+    onPress?: () => void
 }
 
-const Search = ({onPress, placeholder, margin, rightIcon, ...props}: SearchProps) => {
+const InputSearch = ({onPress, placeholder, margin, rightIcon, ...props}: SearchProps) => {
     return (
         <DisplayCollum>
             <Container margin={margin}>
@@ -29,4 +29,4 @@ const Search = ({onPress, placeholder, margin, rightIcon, ...props}: SearchProps
     );
 };
 
-export default Search;
+export default InputSearch;

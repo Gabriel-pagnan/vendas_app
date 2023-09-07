@@ -8,7 +8,7 @@ import { ProductType } from '../../../shared/types/productType';
 import ProductTumbnail from '../../../shared/components/productTumbnail/ProductTumbnail';
 import { theme } from '../../../shared/theme/theme';
 import { ContainerSearch, FlatListContainer, IconCart, Tumbnail } from './home.styles';
-import Search from '../../../shared/components/inputs/search/Search';
+import InputSearch from '../../../shared/components/inputs/search/Search';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { MenuURL } from '../../../shared/enums/menu-url.enum';
@@ -44,7 +44,7 @@ const Home = () => {
             <StatusBar backgroundColor={theme.colors.redTheme.orangeRed} />
 
             <ContainerSearch>
-                <Search
+                <InputSearch
                     onPress={handleSearch}
                     onChange={handleChange}
                     value={search}
