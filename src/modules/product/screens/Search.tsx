@@ -6,12 +6,13 @@ import { ProductType } from '../../../shared/types/productType';
 import { MethodsEnum } from '../../../shared/enums/methods.enum';
 import { URL_PRODUCT_PAGE } from '../../../shared/constants/urls';
 import { PaginationType } from '../../../shared/types/paginationType';
-import { ContainerSearchProducts, Header } from '../styles/search.styles';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import InputSearch from '../../../shared/components/inputs/search/Search';
-import { useProductReducer } from '../../../Redux-store/reducer/product-reducer/useProductReducer';
-import { Text, StatusBar, NativeSyntheticEvent, TextInputChangeEventData, ScrollView } from 'react-native';
+import { ContainerSearchProducts, Header, SearchProductScrollView } from '../styles/search.styles';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ProductTumbnail from '../../../shared/components/productTumbnail/ProductTumbnail';
+import { useProductReducer } from '../../../Redux-store/reducer/product-reducer/useProductReducer';
+import { StatusBar, NativeSyntheticEvent, TextInputChangeEventData, ScrollView, NativeScrollEvent } from 'react-native';
+import { ActivityIndicator } from '../../../shared/components/buttons/button.styles';
 
 export type SearchNavigationProp = NativeStackNavigationProp<Record<string, ISearchParams>>;
 
@@ -20,8 +21,8 @@ export interface ISearchParams {
 }
 
 const Search = () => {
-    const { request } = useRequest();
-    const { searchProducts, setSearchProducts } = useProductReducer();
+    const { request, loading } = useRequest();
+    const { searchProducts, setSearchProducts, insertSearcProducts } = useProductReducer();
     const { params } = useRoute<RouteProp<Record<string, ISearchParams>>>();
     const [value, setValue] = useState<string>(params?.search || '');
 
@@ -30,20 +31,37 @@ const Search = () => {
     }, [params]);
 
     useEffect(() => {
-        if (value) {
+        setSearchProducts(undefined);
+        request<PaginationType<ProductType[]>>({
+            url: `${URL_PRODUCT_PAGE}?search=${value}&size=10&page=1`,
+            method: MethodsEnum.GET,
+            saveGlobal: setSearchProducts,
+        });
+    }, [value]);
+
+    const findPageProducts = () => {
+        if (searchProducts && searchProducts.meta.currentPage < searchProducts.meta.totalPages) {
             request<PaginationType<ProductType[]>>({
-                url: `${URL_PRODUCT_PAGE}?search=${value}&size=&page=`,
+                url: `${URL_PRODUCT_PAGE}?search=${value}&size=10&page=${searchProducts.meta.currentPage + 1}`,
                 method: MethodsEnum.GET,
-                saveGlobal: setSearchProducts,
+                saveGlobal: insertSearcProducts,
             });
         }
-    }, [value]);
+    };
 
     const handleChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
         setValue(e.nativeEvent.text);
     };
 
-    console.log(searchProducts);
+    const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+        const { contentOffset, layoutMeasurement, contentSize } = e.nativeEvent;
+        const endScroll = contentOffset.y >= contentSize.height - layoutMeasurement.height;
+
+        if (endScroll && !loading) {
+            findPageProducts();
+        }
+    };
+
     return (
         <>
             <Header>
@@ -56,13 +74,15 @@ const Search = () => {
             </Header>
             <ContainerSearchProducts>
                 {searchProducts && searchProducts.data && (
-                    <ScrollView>
-                        {searchProducts.data.map((product) => (
-                            <ProductTumbnail key={product.id} product={product} />
-                        ))}
+                    <ScrollView onScroll={handleScroll}>
+                        <SearchProductScrollView>
+                            {searchProducts.data.map((product) => (
+                                <ProductTumbnail key={product.id} product={product} />
+                            ))}
+                        </SearchProductScrollView>
                     </ScrollView>
                 )}
-                <Text>teste</Text>
+                {loading && <ActivityIndicator style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }] }} color={theme.colors.orangeTheme.orange600} />}
             </ContainerSearchProducts >
         </>
     );
