@@ -1,66 +1,13 @@
-import React, { useEffect, useState } from 'react';
 import { theme } from '../../../shared/theme/theme';
-import { useRequest } from '../../../shared/hooks/useRequest';
-import { RouteProp, useRoute } from '@react-navigation/native';
-import { ProductType } from '../../../shared/types/productType';
-import { MethodsEnum } from '../../../shared/enums/methods.enum';
-import { URL_PRODUCT_PAGE } from '../../../shared/constants/urls';
-import { PaginationType } from '../../../shared/types/paginationType';
+import { ScrollView, StatusBar } from 'react-native';
+import Card from '../../../shared/components/card/Card';
+import { useSearchProducts } from '../hooks/useSearchProducts';
 import InputSearch from '../../../shared/components/inputs/search/Search';
-import { ContainerSearchProducts, Header, SearchProductScrollView } from '../styles/search.styles';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import ProductTumbnail from '../../../shared/components/productTumbnail/ProductTumbnail';
-import { useProductReducer } from '../../../Redux-store/reducer/product-reducer/useProductReducer';
-import { StatusBar, NativeSyntheticEvent, TextInputChangeEventData, ScrollView, NativeScrollEvent } from 'react-native';
 import { ActivityIndicator } from '../../../shared/components/buttons/button.styles';
-
-export type SearchNavigationProp = NativeStackNavigationProp<Record<string, ISearchParams>>;
-
-export interface ISearchParams {
-    search?: string
-}
+import { ContainerSearchProducts, Header, SearchProductScrollView } from '../styles/search.styles';
 
 const Search = () => {
-    const { request, loading } = useRequest();
-    const { searchProducts, setSearchProducts, insertSearcProducts } = useProductReducer();
-    const { params } = useRoute<RouteProp<Record<string, ISearchParams>>>();
-    const [value, setValue] = useState<string>(params?.search || '');
-
-    useEffect(() => {
-        setValue(params?.search || '');
-    }, [params]);
-
-    useEffect(() => {
-        setSearchProducts(undefined);
-        request<PaginationType<ProductType[]>>({
-            url: `${URL_PRODUCT_PAGE}?search=${value}&size=10&page=1`,
-            method: MethodsEnum.GET,
-            saveGlobal: setSearchProducts,
-        });
-    }, [value]);
-
-    const findPageProducts = () => {
-        if (searchProducts && searchProducts.meta.currentPage < searchProducts.meta.totalPages) {
-            request<PaginationType<ProductType[]>>({
-                url: `${URL_PRODUCT_PAGE}?search=${value}&size=10&page=${searchProducts.meta.currentPage + 1}`,
-                method: MethodsEnum.GET,
-                saveGlobal: insertSearcProducts,
-            });
-        }
-    };
-
-    const handleChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
-        setValue(e.nativeEvent.text);
-    };
-
-    const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-        const { contentOffset, layoutMeasurement, contentSize } = e.nativeEvent;
-        const endScroll = contentOffset.y >= contentSize.height - layoutMeasurement.height;
-
-        if (endScroll && !loading) {
-            findPageProducts();
-        }
-    };
+    const {value, loading, handleChange, handleScroll, searchProducts} = useSearchProducts();
 
     return (
         <>
@@ -74,10 +21,10 @@ const Search = () => {
             </Header>
             <ContainerSearchProducts>
                 {searchProducts && searchProducts.data && (
-                    <ScrollView onScroll={handleScroll}>
+                    <ScrollView onScroll={handleScroll} showsHorizontalScrollIndicator={false}>
                         <SearchProductScrollView>
                             {searchProducts.data.map((product) => (
-                                <ProductTumbnail key={product.id} product={product} />
+                                <Card key={product.id} product={product} />
                             ))}
                         </SearchProductScrollView>
                     </ScrollView>

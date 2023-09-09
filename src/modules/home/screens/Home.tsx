@@ -12,7 +12,7 @@ import InputSearch from '../../../shared/components/inputs/search/Search';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { MenuURL } from '../../../shared/enums/menu-url.enum';
-import { SearchNavigationProp } from '../../product/screens/Search';
+import { SearchNavigationProp } from '../../product/hooks/useSearchProducts';
 
 
 const Home = () => {
