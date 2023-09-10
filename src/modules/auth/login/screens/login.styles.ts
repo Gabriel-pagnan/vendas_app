@@ -23,10 +23,7 @@ export const ContainerRegister = styled.View`
     align-items: center;
     flex-direction: row;
     justify-content: center;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 20px;
-    z-index: -1;
+    margin-top: 170px;
 `;
 
 export const BtnRegister = styled.Pressable`

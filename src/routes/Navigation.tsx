@@ -16,7 +16,8 @@ const Navigation = () => {
         <NavigationContainer>
             <Navigator initialRouteName={MenuURL.SPLASH} screenOptions={{ headerShown: false }}>
                 <Screen name={MenuURL.SPLASH} component={Splash} />
-                <Screen name={MenuURL.LOGIN} component={Login} />
+                <Screen name={MenuURL.LOGIN} component={Login} options={{
+                }}/>
                 <Screen name={MenuURL.REGISTER} component={Register} />
                 <Screen name={MenuURL.TAB_ROUTES} component={TabRoutes} />
                 <Screen name={MenuURL.SEARCH_PRODUCT} component={Search} />

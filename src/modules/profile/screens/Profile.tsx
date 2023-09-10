@@ -1,10 +1,14 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
+import Button from '../../../shared/components/buttons/Button';
+import { logout } from '../../../shared/functions/connection/auth';
+import { NavigationProp, ParamListBase, useNavigation } from '@react-navigation/native';
 
 const Profile = () => {
+    const navigate = useNavigation<NavigationProp<ParamListBase>>();
     return (
         <View>
-            <Text>Profile</Text>
+            <Button onPress={() => logout(navigate)} title="logout" color="red" />
         </View>
     );
 };

@@ -16,9 +16,8 @@ export const TabRoutes = () => {
             initialRouteName="Home"
             screenOptions={{
                 headerShown: false,
+                tabBarShowLabel: false,
                 tabBarStyle: {
-                    position: 'absolute',
-                    alignItems: 'center',
                     height: 60,
                     backgroundColor: 'white',
                     borderTopLeftRadius: 30,
@@ -29,10 +28,10 @@ export const TabRoutes = () => {
                 tabBarLabelStyle: {
                     fontSize: 12,
                 },
+                tabBarHideOnKeyboard: true,
             }}>
 
             <Screen name={MenuURL.HOME} component={Home} options={{
-                tabBarShowLabel: false,
                 tabBarIcon: ({ focused }) => (
                     <View>
                         {focused ? (
@@ -44,7 +43,6 @@ export const TabRoutes = () => {
                 ),
             }} />
             <Screen name={MenuURL.CART} component={Cart} options={{
-                tabBarShowLabel: false,
                 tabBarIcon: ({ focused }) => (
                     <View>
                         {focused ? (
@@ -56,7 +54,6 @@ export const TabRoutes = () => {
                 ),
             }} />
             <Screen name={MenuURL.ORDER} component={Order} options={{
-                tabBarShowLabel: false,
                 tabBarIcon: ({ focused }) => (
                     <View>
                         {focused ? (
@@ -68,7 +65,7 @@ export const TabRoutes = () => {
                 ),
             }} />
             <Screen name={MenuURL.PROFILE} component={Profile} options={{
-                tabBarShowLabel: false,
+                headerShown: true,
                 tabBarIcon: ({ focused }) => (
                     <View>
                         {focused ? (

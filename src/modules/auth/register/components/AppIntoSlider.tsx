@@ -34,12 +34,13 @@ const AppIntoSlider = () => {
                                 size={26}
                                 colorIcon="#E67B0F" />
                             <Input
-                                value={createUser.email}
-                                onChange={(e) => handleChange(e, 'email')}
-                                placeholder="Seu Email"
                                 leftIcon
-                                icon="mail-outline"
                                 size={26}
+                                icon="mail-outline"
+                                placeholder="Seu Email"
+                                value={createUser.email}
+                                keyboardType="email-address"
+                                onChange={(e) => handleChange(e, 'email')}
                                 colorIcon="#E67B0F" />
                         </>
                     ),
@@ -50,22 +51,24 @@ const AppIntoSlider = () => {
                     render: (
                         <>
                             <Input
-                                type="cel-phone"
-                                value={createUser.phone}
-                                onChange={(e) => handleChange(e, 'phone')}
-                                placeholder="Seu telefone"
                                 leftIcon
-                                icon="call-outline"
                                 size={26}
+                                type="cel-phone"
+                                icon="call-outline"
+                                value={createUser.phone}
+                                keyboardType="number-pad"
+                                placeholder="Seu telefone"
+                                onChange={(e) => handleChange(e, 'phone')}
                                 colorIcon="#E67B0F" />
                             <Input
+                                leftIcon
+                                size={26}
                                 type="cpf"
                                 value={createUser.cpf}
-                                onChange={(e) => handleChange(e, 'cpf')}
                                 placeholder="Seu CPF"
-                                leftIcon
                                 icon="wallet-outline"
-                                size={26}
+                                keyboardType="number-pad"
+                                onChange={(e) => handleChange(e, 'cpf')}
                                 colorIcon="#E67B0F" />
                         </>
                     ),

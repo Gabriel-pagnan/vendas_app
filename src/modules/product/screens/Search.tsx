@@ -21,7 +21,7 @@ const Search = () => {
             </Header>
             <ContainerSearchProducts>
                 {searchProducts && searchProducts.data && (
-                    <ScrollView onScroll={handleScroll} showsHorizontalScrollIndicator={false}>
+                    <ScrollView onScroll={handleScroll} showsVerticalScrollIndicator={false}>
                         <SearchProductScrollView>
                             {searchProducts.data.map((product) => (
                                 <Card key={product.id} product={product} />
