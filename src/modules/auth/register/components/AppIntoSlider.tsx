@@ -108,7 +108,13 @@ const AppIntoSlider = () => {
                 backgroundColor: '#E67B0F',
                 width: 30,
             }}
-            renderNextButton={() => (createUser.name ? <Ionicons name="arrow-forward-outline" size={40} color="#E67B0F" /> : '')}
+            renderNextButton={() => (
+                createUser.name && createUser.email ? <Ionicons name="arrow-forward-outline" size={40} color="#E67B0F" /> : ''
+            )}
+            renderPrevButton={() => (
+                <Ionicons name="arrow-back-outline" size={40} color="#E67B0F" />
+            )}
+            showPrevButton
             showDoneButton={false} />
     );
 };

@@ -8,6 +8,7 @@ import { insertMaskInPhone } from '../../../functions/phone';
 
 
 interface InputProps extends TextInputProps {
+    secureTextEntry?: boolean,
     placeholder?: string,
     margin?: number,
     title?: string,
@@ -20,8 +21,8 @@ interface InputProps extends TextInputProps {
     type?: 'cel-phone' | 'cpf'
 }
 
-const Input = ({ type, onChange, errorMessage, size, colorIcon, icon, leftIcon, rightIcon, title, placeholder, margin, ...props }: InputProps) => {
-    const [secury, setSecury] = useState(false);
+const Input = ({ type, onChange, errorMessage, size, colorIcon, icon, leftIcon, rightIcon, title, placeholder, margin, secureTextEntry, ...props }: InputProps) => {
+    const [secury, setSecury] = useState(!!secureTextEntry);
 
     const handleOnChange = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
         let text = e.nativeEvent.text;
@@ -43,6 +44,9 @@ const Input = ({ type, onChange, errorMessage, size, colorIcon, icon, leftIcon, 
             });
         }
     };
+    const handleOnPressEye = () => {
+        setSecury((current) => !current);
+    };
 
     return (
         <DisplayCollum>
@@ -60,7 +64,7 @@ const Input = ({ type, onChange, errorMessage, size, colorIcon, icon, leftIcon, 
                 />
 
                 {rightIcon && (
-                    <TouchableOpacity onPress={() => setSecury(!secury)} >
+                    <TouchableOpacity onPress={handleOnPressEye} >
                         <Ionicons name={secury ? 'eye-off' : 'eye'} size={size} color={'#ccc'} />
                     </TouchableOpacity>
                 )}
